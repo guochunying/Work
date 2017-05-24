@@ -1,0 +1,83 @@
+
+.header{
+    height: 30px;
+    line-height: 30px;
+    background:deepskyblue;
+    color: #fff;
+    font-size: 14px;
+    width: 100%;
+}
+.header ul{
+    padding:0
+}
+.header ul li{
+    list-style: none;
+    float: left;
+    width: 140px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+}
+.header ul li span{
+    width: 60px;
+    text-align: center;
+    font-size: 10px;
+    display: inline-block;
+}
+.content .left{
+    float: left;
+    width: 140px;
+    border-right: 1px solid #ccc;
+    height: 600px;
+
+}
+.content .left ul{
+    padding:0;
+    text-align: center;
+
+}
+.content .left ul li{
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+
+}
+.content .right{
+    float: left;
+    /*width: 600px;*/
+    height: auto;
+    padding-left: 20px;
+
+}
+.content .right h6 {
+    height: 30px;
+    line-height: 30px;
+    margin:0;
+    border-bottom: 1px solid #ccc;
+}
+.content .right p {
+    height: 30px;
+    line-height: 30px;
+    margin:0;
+}
+
+#popup{
+    position: fixed;
+    top:50%;
+    left: 50%;
+    height: 400px;
+    width: 400px;
+    margin-left: -200px;
+    margin-top:-200px;
+    background: lightgoldenrodyellow;
+    z-index: 10;
+}
+#popup li{
+    margin: 10px auto;
+    list-style: none;
+}
+.wrap td input{
+    width: 80px;
+}
+.bg.selected{background:red;color:white;}

@@ -1,0 +1,91 @@
+<h6>用户管理</h6>
+<div>
+    角色 <select >
+            <option value="user">管理员</option>
+            <option value="user">13管理员aaa</option>
+            <option value="user">13管理</option>
+        </select>
+
+    状态 <select   >
+            <option value="all">全部</option>
+            <option value="all">禁用</option>
+            <option value="all">启用</option>
+         </select>
+    登录名 <input type="text" ng-model="search">
+           <button ng-click="btn()">查询</button>
+<p>列表</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>登陆名</th>
+                <th>真实姓名</th>
+                <th>角色</th>
+                <th>手机</th>
+                <th>邮箱</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in DATA |filter:pagelist| filter:state|filter:search|filter:adm">
+                <td>{{item.ID}}</td>
+                <td>{{item.loginname}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.telephone}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.state}}</td>
+                <td>{{item.creattime}}</td>
+                <td>
+                    <span ng-click='change(item.ID)'>修改</span>
+                    <span ng-click='remove(item.ID)'>删除</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="popup" ng-show="bol">
+
+        <ul>
+            <li>确认</li>
+            <li>登录名：<input type="text" value="{{tar.loginname}}" ng-model="tar.loginname"></li>
+            <li>真实姓名：<input type="text" value="{{tar.name}}" ng-model="tar.name"></li>
+            <li>角色：<input type="text" value="{{tar.role}}" ng-model="tar.role"></li>
+            <li>手机：<input type="text" value="{{tar.telephone}}" ng-model="tar.telephone"></li>
+            <li>邮箱：<input type="text" value="{{tar.email}}" ng-model="tar.email"></li>
+            <li>状态：
+                <input type="radio" value="{{tar.state}}" ng-model="tar.state" name="name">启用
+                <input type="radio" value="{{tar.state}}" ng-model="tar.state" name="name">禁用
+            </li>
+
+            <li>
+                <a ng-click="sure()">确定</a>
+                <a ng-click="no()">取消</a>
+            </li>
+        </ul>
+    </div>
+
+        <nav>
+            总共有条8数据
+            <div class="pagination">
+                <li>
+                    <a ng-click="Previous()">
+                        <span>上一页</span>
+                    </a>
+                </li>
+                <li>
+                   <a ng-repeat="item in page"  ng-click="pageSize($index)" ng-class="{'selected':selected==item}" class="bg">{{ item }}</a>
+                </li>
+                <li>
+                    <a ng-click="Next()">
+                        <span>下一页</span>
+                    </a>
+                </li>
+                <li><input type="number" style="width: 50px;height: 35px;text-align: center"value="1" ng-model="selected">页</li>
+            </div>
+
+        </nav>
+    </div>
+

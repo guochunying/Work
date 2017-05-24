@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        nav {
+            position: relative;
+            width:100%;
+            height: 50px;
+        }
+        .pagination {
+            right: 0px;
+            position: absolute;
+            top: -30px;
+        }
+        nav li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body ng-app="myapp">
+<div ng-controller="ft">
+    <header class="header">
+        <ul>
+            <li>通用权限系统</li>
+            <li><span>个人中心</span><span>系统设置</span></li>
+        </ul>
+    </header>
+    <section class="content">
+        <div class="left">
+            <ul>
+                <li><a  >权限管理</a></li>
+                <li><a ui-sref="add" >添加用户</a></li>
+                <li><a ui-sref="user" >用户管理</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <div ui-view ></div>
+        </div>
+
+    </section>
+
+
+</div>
+<script src="../../js/common/angular.js"></script>
+<script src="../../js/common/jquery.js"></script>
+<script src="../../js/common/angular-ui-router.js"></script>
+<script src="data.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>
