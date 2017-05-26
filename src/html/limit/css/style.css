@@ -80,4 +80,5 @@
 .wrap td input{
     width: 80px;
 }
-.bg.selected{background:red;color:white;}
+
+.bg.back{background:red;color:white;}

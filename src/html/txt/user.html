@@ -1,12 +1,12 @@
 <h6>用户管理</h6>
 <div>
-    角色 <select >
+    角色 <select ng-model="rol">
             <option value="user">管理员</option>
             <option value="user">13管理员aaa</option>
             <option value="user">13管理</option>
         </select>
 
-    状态 <select   >
+    状态 <select  ng-model="adm">
             <option value="all">全部</option>
             <option value="all">禁用</option>
             <option value="all">启用</option>
@@ -29,18 +29,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in DATA |filter:pagelist| filter:state|filter:search|filter:adm">
-                <td>{{item.ID}}</td>
-                <td>{{item.loginname}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.role}}</td>
-                <td>{{item.telephone}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.state}}</td>
-                <td>{{item.creattime}}</td>
+            <tr ng-repeat="i in cutoutData |filter:rol|filter:sea|filter:adm">
+                <td>{{i.ID}}</td>
+                <td>{{i.loginname}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.role}}</td>
+                <td>{{i.telephone}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.state}}</td>
+                <td>{{i.creattime}}</td>
                 <td>
-                    <span ng-click='change(item.ID)'>修改</span>
-                    <span ng-click='remove(item.ID)'>删除</span>
+                    <span ng-click='change(i.ID)'>修改</span>
+                    <span ng-click='remove(i.ID)'>删除</span>
                 </td>
             </tr>
         </tbody>
@@ -56,8 +56,8 @@
             <li>手机：<input type="text" value="{{tar.telephone}}" ng-model="tar.telephone"></li>
             <li>邮箱：<input type="text" value="{{tar.email}}" ng-model="tar.email"></li>
             <li>状态：
-                <input type="radio" value="{{tar.state}}" ng-model="tar.state" name="name">启用
-                <input type="radio" value="{{tar.state}}" ng-model="tar.state" name="name">禁用
+                <input type="text" value="{{tar.state}}" ng-model="tar.state" >
+
             </li>
 
             <li>
@@ -68,23 +68,16 @@
     </div>
 
         <nav>
-            总共有条8数据
-            <div class="pagination">
-                <li>
-                    <a ng-click="Previous()">
-                        <span>上一页</span>
-                    </a>
-                </li>
-                <li>
-                   <a ng-repeat="item in page"  ng-click="pageSize($index)" ng-class="{'selected':selected==item}" class="bg">{{ item }}</a>
-                </li>
-                <li>
-                    <a ng-click="Next()">
-                        <span>下一页</span>
-                    </a>
-                </li>
-                <li><input type="number" style="width: 50px;height: 35px;text-align: center"value="1" ng-model="selected">页</li>
-            </div>
+            总共有条{{allPage}}数据
+
+                <span  ng-click="updownFn('-')">上一页</span>
+                <span class="count" ng-class="{back:(index+1)==1}" ng-click="changeIndexFn(1)">1</span>
+                <span class="count" ng-show="showStatue1">...</span>
+                <span class="count" ng-repeat="i in pageArr" ng-show="self==i||self_1==i||i==self_2||i==self1||i==self2" ng-class="{back:(index+1)==i}" ng-click="changeIndexFn(i)">{{i}}</span>
+                <span class="count"  ng-show="showStatue2">...</span>
+                <span class="count"  ng-class="{back:(index+1)==allPage}" ng-click="changeIndexFn(allPage)">{{allPage}}</span>
+                <span   ng-click="updownFn('+')">下一页</span>
+                第<input  type="number"  min="1" max="{{allPage}}" ng-change="changeInput()" ng-model="valueDATA" style="width: 50px;height: 35px;" >页
 
         </nav>
     </div>

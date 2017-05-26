@@ -2,7 +2,7 @@
  * Created by microsoft on 2016/4/11.
  */
 var app=angular.module('myapp',["ui.router"])
-    app.service("data",function(){
+    app.service("alldata",function(){
         return[
             //fstdata:[
             //    {
@@ -142,14 +142,14 @@ var app=angular.module('myapp',["ui.router"])
 
 
     app.config(function ($stateProvider) {
-    var num =9
+        var num =9
         $stateProvider
             .state("add",{
                 url:"/add",
                 templateUrl:"../txt/add.html",
                 controller:function($scope,$stateParams){
                     //添加
-                    console.log($stateParams.ID)
+                    //console.log($stateParams.ID)
                     $scope.addfn=function(){
                         $scope.add.ID=num++
                         $scope.$emit("addData",{
@@ -161,107 +161,169 @@ var app=angular.module('myapp',["ui.router"])
             .state("user",{
                 url:"/user",
                 templateUrl:"../txt/user.html",
-                controller:function($scope,data){
-                    //查询
-                    $scope.btn=function(){
-                        //$scope.tal=set
+                controller:function($scope,alldata,cutpage){
+					//删除
+					    $scope.remove=function(id){
+                            $scope.mydata= alldata
+					        $scope.mydata.forEach(function(i,index){
+					            if(i.ID==id){
+					                $scope.mydata.splice(index,1);
+					            }
+					        })
+                            cutpage($scope)
+					    }
+                    //修改
+                    $scope.bol=false
+                    $scope.change = function (id) {
+                        $scope.bol=true
 
-                        $scope.search=$scope.search
-                        //$scope.tel=$scope.sta
-                    }
-                    //分页总数
-                    $scope.page = [];
-                    for(var i=1;i<=data.length;i++){
-                        //console.log(data[i])
-                        $scope.page.push(i)
-                        //console.log( $scope.page)
+                        $scope.cutoutData.forEach(function (i,index) {
 
-                    }
-                    //点击每一页
-
-                    $scope.pageSize=function(i){
-                        $scope.pagelist=data[i]
-                        $scope.selected = i+1;
-                        //console.log()
-                        //点击上一页
-                        $scope.Previous=function(){
-                                i-=1
-                            $scope.selected = i+1;
-                            if(i<0){
-                                i=0;
-
-                                return false
+                            if(i.ID==id){
+                                //console.log(id)
+                                $scope.tar={}
+                                for(s in i){
+                                    $scope.tar[s]=i[s]
+                                }
+                                //console.log( $scope.tar)
                             }
-                            $scope.pagelist=data[i]
-                        }
-                        //点击下一页
-                        $scope.Next=function(){
-                            i+=1
-                            $scope.selected = i+1;
-                            if(i>=data.length){
-                                i=data.length;
+                        })
 
-                                return false
+                    }
+                    $scope.sure=function () {
+                        $scope.bol=false
+                        $scope.cutoutData.forEach(function (i,index) {
+                            if(i.ID==$scope.tar.ID){
+                                $scope.cutoutData[index]=$scope.tar
+                                //console.log($scope.tar)
+                                //console.log($scope.mydata[index])
                             }
-                            $scope.pagelist=data[i]
-                        }
+
+                        })
+                    }
+                    $scope.no=function () {
+                        $scope.bol=false
                     }
 
-                }
-            })
+			        }
+			    })
     })
+app.service("cutpage",function(){
+    return function ($scope) {
+        var oldData=$scope.fileData()
+        $scope.allPage=Math.ceil(oldData.length/$scope.maxLength)
+        $scope.pageArr=[]
+        for(var i=2;i<$scope.allPage;i++){
+            $scope.pageArr.push(i)
+        }
+        $scope.pageShow=function (i) {
+            $scope.index=i-1
+            $scope.showStatue1=false;
+            $scope.showStatue2=false;
+            if($scope.index<=3){
+                $scope.showStatue1=false;
+                $scope.showStatue2=true;
+                $scope.self=1;
+                $scope.self_1=2;
+                $scope.self_2=3;
+                $scope.self1=4;
+                $scope.self2=5;
+            }else if($scope.index>3&&$scope.index<$scope.allPage-4){
+                $scope.showStatue1=true;
+                $scope.showStatue2=true;
+                $scope.self=$scope.index+1;
+                $scope.self_1=$scope.index;
+                $scope.self_2=$scope.index-1;
+                $scope.self1=$scope.index+2;
+                $scope.self2=$scope.index+3;
+            }else{
+                $scope.showStatue1=true;
+                $scope.showStatue2=false;
+                $scope.self=$scope.allPage-1;
+                $scope.self_1=$scope.allPage-2;
+                $scope.self_2=$scope.allPage-3;
+                $scope.self1=$scope.allPage-4;
+            }
+            if($scope.allPage<=6){
+                $scope.showStatue1=false;
+                $scope.showStatue2=false;
+            }
+            $scope.cutDataFn()
 
 
-app.controller("ft", function ($scope, $http,data) {
-    $scope.DATA=data
+        }
 
+        $scope.cutDataFn=function () {
+            var newdata=$scope.fileData()
+            //console.log(newdata)
+            $scope.cutoutData=newdata.splice($scope.index*$scope.maxLength,$scope.maxLength)
+
+        }
+        $scope.changeIndexFn=function (i) {
+            $scope.valueDATA=i
+            $scope.pageShow(i)
+
+
+        }
+        $scope.updownFn=function (i) {
+            if(i=="+"){
+                if(($scope.index+1)< $scope.allPage){
+                    $scope.pageShow($scope.index+2)
+                }
+            }else{
+                if($scope.index>0){
+                    $scope.pageShow($scope.index)
+                }
+            }
+
+
+        }
+        $scope.changeInput=function () {
+
+            $scope.pageShow($scope.valueDATA)
+
+
+        }
+        $scope.pageShow(1)
+
+    }
+})
+
+app.controller("ft", function ($scope, $http,alldata,cutpage) {
+    $scope.data = alldata
+//console.log(alldata)
+    $scope.fileData = function () {
+        return alldata.map(function (i) {
+            return i
+        })
+    }
+    
+//  每一页显示的数据长度
+    $scope.maxLength = 1
+    cutpage($scope)
+
+//添加
     $scope.$on("addData",function(e,d){
-        $scope.DATA.push(d.data)
-        console.log( $scope.DATA)
+        $scope.data.push(d.data)
+        //console.log( $scope.data)
+        cutpage($scope)
     })
-    //删除
-    $scope.remove=function(id){
-        $scope.DATA.forEach(function(i,index){
-                //console.log(i)
-            if(i.ID==id){
-                $scope.DATA.splice(index,1);
+//查询
+    $scope.btn=function(){
 
-            }
-        })
+        cutpage($scope)
+        // console.log( $scope.sea)
     }
 
 
-//修改
-    $scope.bol=false
-    $scope.change = function (id) {
-        $scope.bol=true
-        $scope.mydata=data
-        $scope.mydata.forEach(function (i,index) {
-            if(i.ID==id){
-                $scope.tar={}
-                for(s in i){
-                    $scope.tar[s]=i[s]
-                }
-                //console.log($scope.tar)
-            }
-        })
+})
 
-    }
-    $scope.sure=function () {
-        $scope.bol=false
-        $scope.mydata.forEach(function (i,index) {
 
-            if(i.ID==$scope.tar.ID){
-                $scope.mydata[index]=$scope.tar
-            }
-        })
-    }
-    $scope.no=function () {
-        $scope.mydata=data
-        $scope.bol=false
-    }
 
-   });
+
+
+
+
 
 
 
