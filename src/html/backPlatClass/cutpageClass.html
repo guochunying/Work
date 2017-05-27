@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-app="myapp" ng-controller="firstcon">
+<main>
+    <section ng-repeat="i in cutoutData">
+        <span>{{i.ID}}</span>
+        <span>{{i.role}}</span>
+    </section>
+</main>
+<div class="hid">
+    <p class="fl">总共有条<em ></em>数据</p>
+    <div class="fl marl50">
+        <span  class="anniu1" ng-click="updownFn('-')">上一页</span>
+        <span class="annius" ng-class="{back:(index+1)==1}" ng-click="changeIndexFn(1)">1</span>
+        <span class="annius" ng-show="showStatue1">...</span>
+        <span ng-repeat="i in pageArr" ng-show="showArr.indexOf(i)!=-1" class="annius" ng-class="{back:(index+1)==i}" ng-click="changeIndexFn(i)">{{i}}</span>
+        <span  class="annius" ng-show="showStatue2">...</span>
+        <span class="annius" ng-class="{back:(index+1)==allPage}" ng-click="changeIndexFn(allPage)">{{allPage}}</span>
+        <span  class="anniu1" ng-click="updownFn('+')">下一页</span>
+        第<input type="number" min="1" max="{{allPage}}" ng-change="changeInput()" ng-model="valueDATA" style="width:50px;"/>页
+    </div>
+</div>
+<script src="js/common/angular.js"></script>
+<script>
+    var app=angular.module("myapp",[])
+</script>
+<script src="data/data.js"></script>
+<script>
+    app.service("cutpage",function () {
+        return function ($scope) {
+            var oldData=$scope.fileData()
+            $scope.allPage=Math.ceil(oldData.length/$scope.maxLength)
+            $scope.pageArr=[]
+            for(var i=2;i<$scope.allPage;i++){
+                $scope.pageArr.push(i)
+            }
+            $scope.len=($scope.middlePage-1)/2
+            $scope.pageShow=function (i) {
+                $scope.index=i-1
+                $scope.showStatue1=false;
+                $scope.showStatue2=false;
+                if($scope.index<$scope.middlePage-$scope.len){
+                    $scope.showStatue1=false;
+                    $scope.showStatue2=true;
+                    $scope.showArr=[]
+                    for(var i=1;i<=$scope.middlePage;i++){
+                        $scope.showArr.push(i)
+                    }
+
+                }else if($scope.index>=$scope.middlePage-$scope.len&&$scope.index<=$scope.allPage-($scope.middlePage-1)/2-2){
+                    $scope.showStatue1=true;
+                    $scope.showStatue2=true;
+                    if($scope.index==$scope.middlePage-$scope.len){
+                        $scope.showStatue1=false;
+                    }
+                    if($scope.index==$scope.allPage-($scope.middlePage-1)/2-2){
+                        $scope.showStatue2=false;
+                    }
+
+                    $scope.showArr=[$scope.index+1]
+                    for(var i=0;i<$scope.len;i++){
+                        $scope.showArr.push($scope.index-i)
+                    }
+                    for(var i=2;i<=$scope.len+1;i++){
+                        $scope.showArr.push($scope.index+i)
+                    }
+                }else{
+                    $scope.showStatue1=true;
+                    $scope.showStatue2=false;
+                    $scope.showArr=[]
+                    for(var i=1;i<$scope.middlePage;i++){
+                        $scope.showArr.push($scope.allPage-i)
+                    }
+                }
+                if($scope.allPage<=6){
+                    $scope.showStatue1=false;
+                    $scope.showStatue2=false;
+                }
+                $scope.cutDataFn()
+            }
+
+            $scope.cutDataFn=function () {
+                var newdata=$scope.fileData()
+                $scope.cutoutData=newdata.splice($scope.index*$scope.maxLength,$scope.maxLength)
+                console.log($scope.cutoutData)
+            }
+            $scope.changeIndexFn=function (i) {
+                $scope.pageShow(i)
+
+            }
+            $scope.updownFn=function (i) {
+                if(i=="+"){
+                    if(($scope.index+1)< $scope.allPage){
+                        $scope.pageShow($scope.index+2)
+                    }
+                }else{
+                    if($scope.index>0){
+                        $scope.pageShow($scope.index)
+                    }
+                }
+            }
+            $scope.changeInput=function () {
+                $scope.pageShow($scope.valueDATA)
+
+            }
+            $scope.pageShow(1)
+        }
+    })
+    app.controller("firstcon",function ($scope,alldata,cutpage) {
+        $scope.data=alldata.fourdata
+        $scope.fileData=function () {
+            return alldata.fourdata.map(function (i) {
+                return i
+            })
+        }
+//        每一页显示的数据长度
+        $scope.maxLength=1
+//        定义中间页数显示的长度,只能为奇数；
+        $scope.middlePage=7
+        cutpage($scope)
+
+    })
+</script>
+</body>
+</html>

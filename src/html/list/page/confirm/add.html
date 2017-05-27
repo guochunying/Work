@@ -1,0 +1,29 @@
+<div class="wrap" ng-show="addPlus">
+    <ul class="list">
+
+        <li><em>编号</em>: <input type="text" ng-model="add.parentid"></li>
+        <li><em>登录名</em>: <input type="text" ng-model="add.loginname"></li>
+        <li><em>真实身份</em>: <input type="text" ng-model="add.name"></li>
+        <li><em>角色</em>：<input type="text"  ng-model="add.role"/></li>
+        <li><em>邮箱</em>：<input type="text"  ng-model="add.email"/></li>
+        <li><em>状态</em>：
+            <input type="radio" name="a" ng-change="changeStateFn('启用')" ng-value="start" ng-model="statueRole" id="qi"/>启用
+            <input type="radio" name="a" ng-change="changeStateFn('禁用')" ng-value="stop" ng-model="statueRole"/>禁止
+        </li>
+        <li><em>手机号</em>：<input type="text" ng-model="add.telephone"/></li>
+        <li><em>创建时间</em>：<input type="text" ng-model="add.creattime"/></li>
+        <li>
+            <em>操作</em>：
+            <a  href="" ng-click="writeFn(item)">修改</a> |
+            <a href="" ng-click="deleteFn(item)">删除</a> |
+            <a href="" ng-click="addFn(item)">添加</a>
+        </li>
+        <li>
+            <div class="max">
+                <button class="lbtn" ng-click="plusOk()">确定</button>
+                <button ng-click="plusNo()">取消</button>
+            </div>
+        </li>
+
+    </ul>
+</div>

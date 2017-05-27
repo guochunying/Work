@@ -1472,7 +1472,7 @@ function getNgAttribute(element, ngAttr) {
  *
  * Use this directive to **auto-bootstrap** an AngularJS application. The `ngApp` directive
  * designates the **root element** of the application and is typically placed near the root element
- * of the page - e.g. on the `<body>` or `<html>` tags.
+ * of the txt - e.g. on the `<body>` or `<html>` tags.
  *
  * There are a few things to keep in mind when using `ngApp`:
  * - only one AngularJS application can be auto-bootstrapped per HTML document. The first `ngApp`
@@ -2631,7 +2631,7 @@ function publishExternalAPI(angular) {
  *
  * To use `jQuery`, simply ensure it is loaded before the `angular.js` file. You can also use the
  * {@link ngJq `ngJq`} directive to specify that jqlite should be used over jQuery, or to use a
- * specific version of jQuery if multiple versions exist on the page.
+ * specific version of jQuery if multiple versions exist on the txt.
  *
  * <div class="alert alert-info">**Note:** All element references in Angular are always wrapped with jQuery or
  * jqLite (such as the element argument in a directive's compile / link function). They are never raw DOM references.</div>
@@ -4710,14 +4710,14 @@ function $AnchorScrollProvider() {
    *
    * @property {(number|function|jqLite)} yOffset
    * If set, specifies a vertical scroll-offset. This is often useful when there are fixed
-   * positioned elements at the top of the page, such as navbars, headers etc.
+   * positioned elements at the top of the txt, such as navbars, headers etc.
    *
    * `yOffset` can be specified in various ways:
    * - **number**: A fixed number of pixels to be used as offset.<br /><br />
    * - **function**: A getter function called everytime `$anchorScroll()` is executed. Must return
    *   a number representing the offset (in pixels).<br /><br />
    * - **jqLite**: A jqLite/jQuery element to be used for specifying the offset. The distance from
-   *   the top of the page to the element's bottom will be used as offset.<br />
+   *   the top of the txt to the element's bottom will be used as offset.<br />
    *   **Note**: The element will be taken into account only as long as its `position` is set to
    *   `fixed`. This option is useful, when dealing with responsive navbars/headers that adjust
    *   their height and/or positioning according to the viewport's size.
@@ -4874,11 +4874,11 @@ function $AnchorScrollProvider() {
           // This is true ONLY if the call to `elem.scrollIntoView()` initially aligns `elem` at the
           // top of the viewport.
           //
-          // IF the number of pixels from the top of `elem` to the end of the page's content is less
+          // IF the number of pixels from the top of `elem` to the end of the txt's content is less
           // than the height of the viewport, then `elem.scrollIntoView()` will align the `elem` some
-          // way down the page.
+          // way down the txt.
           //
-          // This is often the case for elements near the bottom of the page.
+          // This is often the case for elements near the bottom of the txt.
           //
           // In such cases we do not need to scroll the whole `offset` up, just the difference between
           // the top of the element and the offset, which is enough to align the top of `elem` at the
@@ -4895,7 +4895,7 @@ function $AnchorScrollProvider() {
       hash = isString(hash) ? hash : $location.hash();
       var elm;
 
-      // empty hash, scroll to the top of the page
+      // empty hash, scroll to the top of the txt
       if (!hash) scrollTo(null);
 
       // element with given id
@@ -4904,7 +4904,7 @@ function $AnchorScrollProvider() {
       // first anchor with given name :-D
       else if ((elm = getFirstAnchor(document.getElementsByName(hash)))) scrollTo(elm);
 
-      // no element and hash == 'top', scroll to the top of the page
+      // no element and hash == 'top', scroll to the top of the txt
       else if (hash === 'top') scrollTo(null);
     }
 
@@ -5206,7 +5206,7 @@ var $AnimateProvider = ['$provide', function($provide) {
      * It is recommended that the`$animate` service is always used when executing DOM-related procedures within directives.
      *
      * To learn more about enabling animation support, click here to visit the
-     * {@link ngAnimate ngAnimate module page}.
+     * {@link ngAnimate ngAnimate module txt}.
      */
     return {
       // we don't call it directly since non-existant arguments may
@@ -12597,7 +12597,7 @@ function LocationHashbangInHtml5Url(appBase, appBaseNoFile, hashPrefix) {
         hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
 
     this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    // include hashPrefix in $$absUrl when $$url is empty so IE9 does not reload page because of removal of '#'
+    // include hashPrefix in $$absUrl when $$url is empty so IE9 does not reload txt because of removal of '#'
     this.$$absUrl = appBase + hashPrefix + this.$$url;
   };
 
@@ -13296,7 +13296,7 @@ function $LocationProvider() {
      </file>
      <file name="index.html">
        <div ng-controller="LogController">
-         <p>Reload this page with open console, enter text and hit the log button...</p>
+         <p>Reload this txt with open console, enter text and hit the log button...</p>
          <label>Message:
          <input type="text" ng-model="message" /></label>
          <button ng-click="$log.log(message)">log</button>
@@ -17620,7 +17620,7 @@ function adjustMatchers(matchers) {
  * ng.$sceDelegateProvider#resourceUrlWhitelist $sceDelegateProvider.resourceUrlWhitelist} and
  * {@link ng.$sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider.resourceUrlBlacklist}
  *
- * For the general details about this service in Angular, read the main page for {@link ng.$sce
+ * For the general details about this service in Angular, read the main txt for {@link ng.$sce
  * Strict Contextual Escaping (SCE)}.
  *
  * **Example**:  Consider the following case. <a name="example"></a>
@@ -18871,7 +18871,7 @@ function $$TestabilityProvider() {
      * @name $$testability#setLocation
      *
      * @description
-     * Shortcut for navigating to a location without doing a full page reload.
+     * Shortcut for navigating to a location without doing a full txt reload.
      *
      * @param {string} url The location url (path, search and hash,
      *     e.g. /path?a=b#hash) to go to.
@@ -20778,7 +20778,7 @@ function ngDirective(directive) {
  * the href attribute is empty.
  *
  * This change permits the easy creation of action links with the `ngClick` directive
- * without changing the location or causing page reloads, e.g.:
+ * without changing the location or causing txt reloads, e.g.:
  * `<a href="" ng-click="list.addItem()">Add Item</a>`
  */
 var htmlAnchorDirective = valueFn({
@@ -20861,14 +20861,14 @@ var htmlAnchorDirective = valueFn({
 
           element(by.id('link-3')).click();
 
-          // At this point, we navigate away from an Angular page, so we need
+          // At this point, we navigate away from an Angular txt, so we need
           // to use browser.driver to get the base webdriver.
 
           browser.wait(function() {
             return browser.driver.getCurrentUrl().then(function(url) {
               return url.match(/\/123$/);
             });
-          }, 5000, 'page should navigate to /123');
+          }, 5000, 'txt should navigate to /123');
         });
 
         it('should execute ng-click but not reload when href empty string and name specified', function() {
@@ -20890,13 +20890,13 @@ var htmlAnchorDirective = valueFn({
 
           element(by.id('link-6')).click();
 
-          // At this point, we navigate away from an Angular page, so we need
+          // At this point, we navigate away from an Angular txt, so we need
           // to use browser.driver to get the base webdriver.
           browser.wait(function() {
             return browser.driver.getCurrentUrl().then(function(url) {
               return url.match(/\/6$/);
             });
-          }, 5000, 'page should navigate to /6');
+          }, 5000, 'txt should navigate to /6');
         });
       </file>
     </example>
@@ -21582,7 +21582,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
  *
  * Since the role of forms in client-side Angular applications is different than in classical
  * roundtrip apps, it is desirable for the browser not to translate the form submission into a full
- * page reload that sends the data to the server. Instead some javascript logic should be triggered
+ * txt reload that sends the data to the server. Instead some javascript logic should be triggered
  * to handle the form submission in an application-specific way.
  *
  * For this reason, Angular prevents the default action (form submission to the server) unless the
@@ -21712,7 +21712,7 @@ var formDirectiveFactory = function(isNgForm) {
               // action is not prevented. see #1238
               //
               // IE 9 is not affected because it doesn't fire a submit event and try to do a full
-              // page reload if the form was destroyed by submission of the form via a click handler
+              // txt reload if the form was destroyed by submission of the form via a click handler
               // on a button in the form. Looks like an IE9 specific bug.
               var handleFormSubmission = function(event) {
                 scope.$apply(function() {
@@ -23584,7 +23584,7 @@ var ngValueDirective = function() {
  *
  * It is preferable to use `ngBind` instead of `{{ expression }}` if a template is momentarily
  * displayed by the browser in its raw state before Angular compiles it. Since `ngBind` is an
- * element attribute, it makes the bindings invisible to the user while the page is loading.
+ * element attribute, it makes the bindings invisible to the user while the txt is loading.
  *
  * An alternative solution to this problem would be using the
  * {@link ng.directive:ngCloak ngCloak} directive.
@@ -24258,7 +24258,7 @@ var ngClassEvenDirective = classDirective('Even', 1);
  * directive to avoid the undesirable flicker effect caused by the html template display.
  *
  * The directive can be applied to the `<body>` element, but the preferred usage is to apply
- * multiple `ngCloak` directives to small portions of the page to permit progressive rendering
+ * multiple `ngCloak` directives to small portions of the txt to permit progressive rendering
  * of the browser view.
  *
  * `ngCloak` works in cooperation with the following css rule embedded within `angular.js` and
@@ -24707,16 +24707,16 @@ var ngControllerDirective = [function() {
           });
 
           // For now, we only test on Chrome,
-          // as Safari does not load the page with Protractor's injected scripts,
+          // as Safari does not load the txt with Protractor's injected scripts,
           // and Firefox webdriver always disables content security policy (#6358)
           if (browser.params.browser !== 'chrome') {
             return;
           }
 
-          it('should not report errors when the page is loaded', function() {
+          it('should not report errors when the txt is loaded', function() {
             // clear errors so we are not dependent on previous tests
             clearErrors();
-            // Need to reload the page as the page is already loaded when
+            // Need to reload the txt as the txt is already loaded when
             // we come here
             browser.driver.getCurrentUrl().then(function(url) {
               browser.get(url);
@@ -25066,7 +25066,7 @@ forEach(
  * Enables binding angular expressions to onsubmit events.
  *
  * Additionally it prevents the default action (which for form means sending the request to the
- * server and reloading the current page), but only if the form does not contain `action`,
+ * server and reloading the current txt), but only if the form does not contain `action`,
  * `data-action`, or `x-action` attributes.
  *
  * <div class="alert alert-warning">
@@ -25979,7 +25979,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  * Such DOM related logic should be provided by other directives which make use of
  * `NgModelController` for data-binding to control elements.
  * Angular provides this DOM logic for most {@link input `input`} elements.
- * At the end of this page you can find a {@link ngModel.NgModelController#custom-control-example
+ * At the end of this txt you can find a {@link ngModel.NgModelController#custom-control-example
  * custom control example} that uses `ngModelController` to bind to `contenteditable` elements.
  *
  * @example
@@ -28362,7 +28362,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *   when running `for key in myObj`. Browsers generally follow the strategy of providing
  *   keys in the order in which they were defined, although there are exceptions when keys are deleted
  *   and reinstated. See the
- *   [MDN page on `delete` for more info](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browser_notes).
+ *   [MDN txt on `delete` for more info](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browser_notes).
  *
  * - `ngRepeat` will silently *ignore* object keys starting with `$`, because
  *   it's a prefix used by Angular for public (`$`) and private (`$$`) properties.
@@ -28935,7 +28935,7 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  *
  * ```css
  * //
- * //a working example can be found at the bottom of this page
+ * //a working example can be found at the bottom of this txt
  * //
  * .my-element.ng-hide-add, .my-element.ng-hide-remove {
  *   /&#42; this is required as of 1.3x to properly
@@ -29109,7 +29109,7 @@ var ngShowDirective = ['$animate', function($animate) {
  *
  * ```css
  * //
- * //a working example can be found at the bottom of this page
+ * //a working example can be found at the bottom of this txt
  * //
  * .my-element.ng-hide-add, .my-element.ng-hide-remove {
  *   transition: 0.5s linear all;

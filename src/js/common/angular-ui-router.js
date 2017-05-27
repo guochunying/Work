@@ -4313,7 +4313,7 @@ function defaultOpts(el, $state) {
  * Here's an example of how you'd use ui-sref and how it would compile. If you have the
  * following template:
  * <pre>
- * <a ui-sref="home">Home</a> | <a ui-sref="about">About</a> | <a ui-sref="{page: 2}">Next page</a>
+ * <a ui-sref="home">Home</a> | <a ui-sref="about">About</a> | <a ui-sref="{txt: 2}">Next txt</a>
  *
  * <ul>
  *     <li ng-repeat="contact in contacts">
@@ -4324,7 +4324,7 @@ function defaultOpts(el, $state) {
  *
  * Then the compiled html would be (assuming Html5Mode is off and current state is contacts):
  * <pre>
- * <a href="#/home" ui-sref="home">Home</a> | <a href="#/about" ui-sref="about">About</a> | <a href="#/contacts?page=2" ui-sref="{page: 2}">Next page</a>
+ * <a href="#/home" ui-sref="home">Home</a> | <a href="#/about" ui-sref="about">About</a> | <a href="#/contacts?txt=2" ui-sref="{txt: 2}">Next txt</a>
  *
  * <ul>
  *     <li ng-repeat="contact in contacts">

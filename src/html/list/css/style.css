@@ -1,0 +1,144 @@
+.header {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  line-height: 40px;
+  background: deepskyblue;
+  color: #fff; }
+  .header .dilog {
+
+    position: absolute;
+    padding-right: 30px; }
+    .header .dilog h1 {
+      font-size: 18px;
+      height: 40px;
+      line-height: 40px;
+      padding:0 15px;
+      border-right: 1px solid #ccc;
+      margin: 0; }
+  .header .list {
+    margin-left: 170px;
+    display: flex; }
+    .header .list span {
+      display: inline-block;
+      margin-right: 30px;
+      font-size: 16px;
+      color: white; }
+
+.fs {
+  display: flex; }
+  .fs .left {
+    border-right: 1px solid #ccc;
+    padding: 20px; }
+    .fs .left i {
+      font-size: 20px;
+      color: greenyellow; }
+    .fs .left .on {
+      color: green; }
+    .fs .left p {
+      padding-left: 20px;
+      padding-top: 10px; }
+      .fs .left p span {
+        color: pink;
+        font-size: 16px; }
+    .fs .left ol li {
+      list-style-type: circle;
+      padding-bottom: 15px; }
+  .fs .fr {
+    flex: 1; }
+    .fs .fr .right {
+      position: relative;
+      margin-left: 30px; }
+      .fs .fr .right h1 {
+        font-size: 16px; }
+      .fs .fr .right .page .bg {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        border: 1px solid #ccc;
+        line-height: 30px;
+        display: inline-block; }
+      .fs .fr .right .page .back {
+        background: deeppink;
+        color: #fff; }
+      .fs .fr .right .page .pagation {
+        display: inline-block; }
+.remove{
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  border: 1px solid #000;
+  left:50%;
+  top:50%;
+  margin-left: -100px;
+  margin-top: -100px;
+  background: #ccc;
+}
+
+.min{
+  height: 50px;
+  line-height: 50px;
+
+}
+.open{
+  margin-left: 10px;
+
+}
+.nowrap{
+  position: absolute;
+  right:30px
+}
+.lin{
+  position: absolute;
+  bottom: 120px;
+  left: 20px
+}
+.btn{
+  position: absolute;
+  bottom: 30px;
+ left:20px;
+
+}
+.btn1{
+  position: absolute;
+  bottom: 30px;
+  right: 30px
+}
+.mark{
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+  position: fixed;
+  left:50%;
+  top:50%;
+  margin-top: -150px;
+  margin-left: -150px;
+}
+.list li{
+  list-style: none;
+  margin-bottom: 20px;
+}
+.list li em{
+  font-style: normal;
+}
+.man{
+  position: absolute;
+  bottom:50px
+}
+.man{
+  position: absolute;
+  bottom:30px
+}
+.wrap{
+  width: 400px;
+  height: 500px;
+  border: 1px solid #000;
+  position: fixed;
+  left:50%;
+  top:50%;
+  margin-top: -200px;
+  margin-left: -250px;
+  background: #CCCCCC;
+  padding-top: 20px;
+}
+/*# sourceMappingURL=style.css.map */

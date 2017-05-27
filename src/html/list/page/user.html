@@ -1,0 +1,79 @@
+<div class="right">
+    <h1>用户管理</h1>
+    <hr>
+    <p >
+        <span>角色：</span>
+        <select ng-model="sel">
+            <option value="">全部</option>
+            <option value="">管理员</option>
+            <option value="">13管理</option>
+        </select>
+        <span>状态</span>
+        <select name="" id="" ng-model="statues">
+            <option value="">全部</option>
+            <option value="禁用">禁用</option>
+            <option value="启用">启用</option>
+        </select>
+        <span>登录名</span>
+        <input type="text" ng-model="name">
+        <button ng-click="searchFn()">查询</button>
+    </p>
+    <table class="table ">
+        <thead>
+        <tr>
+            <td style="color: deepskyblue">列表</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>ID</th>
+            <th>编号</th>
+            <th>登录名</th>
+            <th>真实身份</th>
+            <th>角色</th>
+            <th>手机</th>
+            <th>邮箱</th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="item in cutoutData">
+            <td>{{item.ID}}</td>
+            <td>{{item.parentid}}</td>
+            <td>{{item.loginname}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.role}}</td>
+            <td>{{item.telephone}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.creattime}}</td>
+            <td>
+                <a  href="" ng-click="writeFn(item)">修改</a> |
+                <a href="" ng-click="deleteFn(item)">删除</a> |
+                <a href="" ng-click="addFn(item)">添加</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="page" ng-show="cutPageState">
+        总共有<span>{{allPage}}</span>条数据
+        <button ng-click="dropdown('-')" class="active">上一页</button>
+        <span class="bg" ng-class="{back:(index+1)==1}" ng-click="changeIndexFn(1)">1</span>
+        <span class="bg" ng-show="showStatue1">…</span>
+        <div class="pagation">
+            <span ng-repeat="i in pageArr" ng-show="self==i||self_1==i||i==self_2||i==self1||i==self2" class="bg"
+                  ng-class="{back:(index+1)==i}"
+                  ng-click="changeIndexFn(i)">{{i}}</span>
+        </div>
+        <span class="bg" ng-show="showStatue2">…</span>
+        <span class="bg" ng-show="lastPage" ng-class="{back:(index+1)==allPage}" ng-click="changeIndexFn(allPage)">{{allPage}}</span>
+        <button  ng-click="dropdown('+')" class="active">下一页</button>
+        第<input type="number" min="1" max="{{allPage}}" ng-change="changeInput()" ng-model="val"
+                style="width:50px;"/>页
+    </div>
+</div>
+<confirm></confirm>
+<main></main>
+<plus></plus>

@@ -1,0 +1,21 @@
+<div class="borders chzhi amends" ng-show="amendSH">
+    <p class="hid">
+        <span class="fl">确认</span>
+        <b class="fr" ng-click="amendNo()">x</b>
+    </p>
+    <ul class="amendul">
+        <li><em>角色</em>：<input type="text"  ng-model="popupData.role"/></li>
+        <li><em>状态</em>：
+            <input type="radio" name="a" ng-change="changeStateFn('启用')" ng-value="start" ng-model="statueRole" id="qi"/>启用
+            <input type="radio" name="a" ng-change="changeStateFn('禁用')" ng-value="stop" ng-model="statueRole"/>禁止
+        </li>
+        <li><em>序号</em>：<input type="text" ng-model="popupData.orders"/></li>
+        <li><em>备注</em>：<textarea name="" id="" cols="30" rows="10"></textarea></li>
+        <li>
+            <div class="zhbtn">
+                <button class="lbtn" ng-click="amendOk()">确定</button>
+                <button ng-click="amendNo()">取消</button>
+            </div>
+        </li>
+    </ul>
+</div>

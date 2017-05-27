@@ -1,0 +1,17 @@
+<div class="left">
+
+    <span class="on"> 我的工作台</span>
+    <p>
+
+        <b ng-click="addfn()">{{parentName}}</b>
+    </p>
+    <ol ng-hide="statueCon">
+        <li ng-repeat="i in data">
+            <a ui-sref="{{i.route}}({id:i.id})">
+                <span>{{i.name}}</span>
+            </a>
+        </li>
+
+    </ol>
+</div>
+<div ui-view="" class="fr"></div>
