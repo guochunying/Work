@@ -96,14 +96,11 @@ app.config(function (alldata,$stateProvider,$urlRouterProvider) {
                             $scope.amendOk=function () {
 
                                 $scope.data.forEach(function (i,index) {
-                                    switch (i.ID){
-                                        case $scope.popupData.ID:{
-
-                                            for(j in $scope.popupData){
-                                                $scope.data[index][j]=$scope.popupData[j]
-                                            }
-                                            $scope.data[index].state=$scope.statueRole
-                                        }break
+                                    if(i.ID==$scope.popupData.ID){
+                                        for(j in $scope.popupData){
+                                            $scope.data[index][j]=$scope.popupData[j]
+                                    }
+                                        $scope.data[index].state=$scope.statueRole
                                     }
                                 })
                                 $scope.writeSH=false;
